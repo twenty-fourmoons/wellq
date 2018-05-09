@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="storeReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c1680c46-a2bf-45b6-8e0c-d43287641016">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="11"/>
+	<parameter name="year" class="java.lang.String"/>
+	<parameter name="matterID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     wg215_matter."mattername",
+     wg215_matter."spec",
+     wg215_matter."measurement",
+     wg215_simple."orderID",
+     wg215_simple."inoutDate",
+     wg215_simple."number",
+     wg215_simple."state",
+     wg215_matter."matterid"
+FROM
+     "wg215_matter" wg215_matter LEFT OUTER JOIN "wg215_simple" wg215_simple ON wg215_matter."matterid" = wg215_simple."matterid"
+WHERE
+     datepart(yyyy,inoutDate) = $P{year}
+     and wg215_simple.matterid = $P{matterID}]]>
+	</queryString>
+	<field name="mattername" class="java.lang.String"/>
+	<field name="spec" class="java.lang.String"/>
+	<field name="measurement" class="java.lang.String"/>
+	<field name="orderID" class="java.lang.String"/>
+	<field name="inoutDate" class="java.lang.String"/>
+	<field name="number" class="java.lang.Integer"/>
+	<field name="state" class="java.lang.String"/>
+	<field name="matterid" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="199" y="10" width="182" height="55" uuid="4a7d49a7-d12d-452e-a9dd-e5e8721c27c5"/>
+				<textElement textAlignment="Center">
+					<font size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[仓库账本]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="17" width="64" height="20" forecolor="#FF0000" uuid="24e5fae5-1b61-4913-b7d4-b723fa71afb4"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[物料代码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="17" width="56" height="20" forecolor="#FF0000" uuid="7113019c-bf6e-41a6-9c67-8231b16cd6a4"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[物料名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="17" width="45" height="20" forecolor="#FF0000" uuid="5446951e-aaf7-4cdd-852e-378d206fec08"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[规格]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="165" y="17" width="44" height="20" forecolor="#FF0000" uuid="aecaeabe-82bc-4315-bae9-063a82ebc486"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[单位]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="17" width="100" height="20" forecolor="#FF0000" uuid="cb95e909-66cc-4fdf-a246-f5ada5b3cfd1"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[订单号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="17" width="100" height="20" forecolor="#FF0000" uuid="bfcb00e8-8e2d-4da5-836c-e7be2231e98e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[进出仓日期]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="17" width="70" height="20" forecolor="#FF0000" uuid="77f68c5c-638c-47ec-b324-64c02b7957b8"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[库存量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="17" width="76" height="20" forecolor="#FF0000" uuid="93f930fb-ac00-489f-acf7-467d37c682fc"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[状态]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="64" height="20" uuid="d0e9ee9b-6c8f-4ebc-a99f-0142721068f5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{matterid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="10" width="55" height="20" uuid="caee66c3-a293-49df-904e-c9e86f3d6063"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{mattername}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="10" width="45" height="20" uuid="548df885-23de-4981-b330-666525898677"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{spec}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="165" y="10" width="44" height="20" uuid="8860e681-0996-4f14-bd94-2ab4a83b9676"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{measurement}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="10" width="100" height="20" uuid="887615a8-8c57-48e5-a18e-65e09e752bc0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{orderID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="10" width="100" height="20" uuid="4d5a1135-a674-4c5f-a732-10d3f3f3c60d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{inoutDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="409" y="10" width="70" height="20" uuid="f1f7c08f-89df-45a3-96db-ddc34a19205a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="10" width="76" height="20" uuid="19665df9-a074-46d7-9a33-36ab1bff48fa"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a840ebd-c664-4306-bb36-649cdd220f27">
+	<property name="ireport.zoom" value="1.4641000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="month" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     *,
+     wg215_simple."orderID" AS wg215_simple_orderID
+FROM
+     "wg215_simple" wg215_simple
+WHERE
+     datepart(mm,inoutDate) = $P{month}]]>
+	</queryString>
+	<field name="orderID" class="java.lang.String"/>
+	<field name="inoutDate" class="java.lang.String"/>
+	<field name="no" class="java.lang.String"/>
+	<field name="remarks" class="java.lang.String"/>
+	<field name="matterid" class="java.lang.String"/>
+	<field name="inoutCount" class="java.lang.Integer"/>
+	<field name="state" class="java.lang.String"/>
+	<field name="wg215_simple_orderID" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="219" y="11" width="100" height="20" uuid="dbda7d4c-b6ec-4ee0-898f-bb477d2ea25a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[简单物料进出仓统计]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="40" width="28" height="20" uuid="c3749589-7db2-400f-954a-3b0296e5d71c"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[第]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="40" width="28" height="20" uuid="58bbca68-4386-4357-baf8-83b61de5308c"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[月：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="57" y="40" width="27" height="20" uuid="ece8c463-992e-4914-b678-a3b6fb0d511c"/>
+				<textFieldExpression><![CDATA[$P{month}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="0" width="79" height="20" forecolor="#FF3333" uuid="a39a7d3b-3396-48d8-bc28-ea88becc0db1"/>
+				<text><![CDATA[订单号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="96" y="0" width="45" height="20" forecolor="#FF3333" uuid="1d06489c-ab77-4ef5-b67e-81a28ec7fcff"/>
+				<text><![CDATA[人员编号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="65" height="20" forecolor="#FF3333" uuid="6cf02ca8-aa59-4ebc-8648-60cb77855a19"/>
+				<text><![CDATA[物料代码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="0" width="88" height="20" forecolor="#FF3333" uuid="581e0fa5-f059-43d8-b335-ceaf377d3246"/>
+				<text><![CDATA[进出仓日期]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="0" width="85" height="20" forecolor="#FF3333" uuid="99a9a3df-a7fe-4b72-93be-8323a39ef6ef"/>
+				<text><![CDATA[进出仓数量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="447" y="0" width="74" height="20" forecolor="#FF3333" uuid="59c474fd-5b24-4395-9965-e2af7ade28b2"/>
+				<text><![CDATA[备注]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="0" width="68" height="20" forecolor="#FF3333" uuid="35f8a431-92e8-4093-bdb7-bb18592b37c4"/>
+				<text><![CDATA[状态]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="96" y="1" width="45" height="20" uuid="52355fa8-d727-4e77-b560-c668036d001d"/>
+				<textFieldExpression><![CDATA[$F{no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="1" width="65" height="20" uuid="d2dc199a-0f25-4ba2-b32f-0aa643445d7c"/>
+				<textFieldExpression><![CDATA[$F{matterid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="206" y="1" width="88" height="20" uuid="459f1b11-1de2-48b7-bbb2-0d16c20f41e3"/>
+				<textFieldExpression><![CDATA[$F{inoutDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="0" width="85" height="20" uuid="2b1edc19-18e5-49b1-9933-de075063b9bf"/>
+				<textFieldExpression><![CDATA[$F{inoutCount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="0" width="74" height="20" uuid="a964b64d-8501-4421-84a7-df019de7c966"/>
+				<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="379" y="0" width="68" height="20" uuid="8f0d579a-72db-4a0a-a2c1-f65152b2a60b"/>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="17" y="0" width="79" height="20" uuid="ff8f9f93-bd60-4eb1-a557-b494dc25672c"/>
+				<textFieldExpression><![CDATA[$F{orderID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
